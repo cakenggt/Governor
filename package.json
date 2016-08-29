@@ -1,7 +1,7 @@
 {
   "name": "governor",
   "version": "1.0.0",
-  "description": "Provides ability to run long-lasting computations without hogging the single thread",
+  "description": "Provides the ability to run long-lasting computations without hogging the single thread",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
