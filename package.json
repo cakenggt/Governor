@@ -18,5 +18,13 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "mocha": "^3.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cakenggt/Governor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cakenggt/Governor/issues"
+  },
+  "homepage": "https://github.com/cakenggt/Governor#readme"
 }
