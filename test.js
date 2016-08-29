@@ -1,8 +1,10 @@
+/*jshint expr: true*/
+
 var expect = require('chai').expect;
 var governor = require('./index');
 
-describe('count', function(){
-  it('to 10000', function(){
+describe('long work', function(){
+  it('count to 10000', function(){
     var num = 0;
     var count = function(steps){
       for (var i = 0; i < steps; i++){
@@ -24,5 +26,38 @@ describe('count', function(){
       expect(num).to.be.gt(0);
     }, 1);
     return prom;
+  });
+  it('is prime', function(){
+    var isPrime = function(num){
+      var currentDivisor = 2;
+      return function(steps){
+        for (var i = 0; i < steps; i++){
+          if (currentDivisor <= Math.sqrt(num)){
+            var divide = num/currentDivisor;
+            if (divide === Math.floor(divide)){
+              return {
+                isPrime: false
+              };
+            }
+            currentDivisor++;
+          }
+          else{
+            return {
+              isPrime: true
+            };
+          }
+        }
+      };
+    };
+    return governor(isPrime(52), 30)
+    .then(function(result){
+      expect(result.isPrime).to.be.false;
+    })
+    .then(function(){
+      return governor(isPrime(982451653))
+      .then(function(result){
+        expect(result.isPrime).to.be.true;
+      });
+    });
   });
 });
