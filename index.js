@@ -3,10 +3,13 @@ var hrtime = require('browser-process-hrtime');
 var Governor = function(cb, duration){
   return new Promise(function(resolve, reject){
     var runs = 1;
+    //Default duration of 30ms
+    var duration = duration || 30;
     var loop = function(){
       var start = hrtime();
       var result = cb(runs);
-      var fnDuration = hrtime(start);
+      var hrtimeResult = hrtime(start);
+      var fnDuration = (hrtimeResult[0]*1000)+(hrtimeResult[1]/1000000);
       //Prevents divide by 0 error
       fnDuration = fnDuration ? fnDuration : 1;
       if (result){
@@ -21,3 +24,5 @@ var Governor = function(cb, duration){
     setTimeout(loop, 0);
   });
 };
+
+module.exports = Governor;
