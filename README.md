@@ -31,7 +31,7 @@ var count = function(steps){
     }
   }
 };
-governor(count, 30)
+guvner(count, 30)
 .then(function(result){
   console.log(result);
 });
